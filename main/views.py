@@ -5,7 +5,9 @@ from main.models import Quantity, QuantityDefinition
 
 from datetime import datetime
 
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def add_quantity(request):
 
     # First retrieve all the required arguments
@@ -22,11 +24,13 @@ def add_quantity(request):
 
     try:
         value = float(request.POST['value'])
-    except:
+    except KeyError:
         return HttpResponse("value is missing")
-
+    except ValueError:
+        return HttpResponse("value should be a float")
+        
     try:
-        unit = float(request.POST['unit'])
+        unit = request.POST['unit']
     except:
         return HttpResponse("unit is missing")
 
@@ -52,5 +56,8 @@ def add_quantity(request):
 
     if 'origin' in request.POST:
         q.origin = request.POST['origin']
+
+    # Save quantity to database
+    q.save()
 
     return HttpResponse("success")

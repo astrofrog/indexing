@@ -29,7 +29,7 @@ class Object(models.Model):
     Define an Astronomical object
     """
     name = models.CharField(max_length=100)
-    coordinates = models.CharField(max_length=100, blank=True)
+    coordinates = models.CharField(max_length=100, null=True)
 
 
 class Quantity(models.Model):
@@ -41,12 +41,15 @@ class Quantity(models.Model):
     definition = models.CharField(max_length=100)
     object = models.CharField(max_length=100)
     value = models.FloatField()
-    uncertainty = models.FloatField(blank=True)
-    unit = models.CharField(max_length=100, blank=True)
-    origin = models.URLField(blank=True)
-    date = models.DateTimeField(blank=True)
+    uncertainty = models.FloatField(null=True)
+    unit = models.CharField(max_length=100, null=True)
+    origin = models.URLField(null=True)
+    date = models.DateTimeField(null=True)
     date_entered = models.DateTimeField()
     # user = models.ForeignKey(User)
     user = models.CharField(max_length=100)
+    
+    def __unicode__(self):
+        return "Quantity '" + self.definition + "' for object '" + self.object + "'"
 
 
