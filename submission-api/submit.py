@@ -1,7 +1,7 @@
 import urllib
 import urllib2
 
-BASE_URL = 'http://127.0.0.1:8000/main/add_quantity/'
+BASE_URL = 'http://127.0.0.1:8000/main/add/quantity'
 
 def add_quantity(name, object, value, unit, user, uncertainty=None, origin=None):
 
