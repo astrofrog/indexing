@@ -8,6 +8,7 @@ from datetime import datetime
 
 from django.views.decorators.csrf import csrf_exempt
 
+
 @csrf_exempt
 def add_quantity(request):
 
@@ -34,14 +35,14 @@ def add_quantity(request):
         except ObjectDoesNotExist:
             object = Object(name=object_name)
             object.save()
-            
+
     try:
         value = float(request.POST['value'])
     except KeyError:
         return HttpResponse("value is missing")
     except ValueError:
         return HttpResponse("value should be a float")
-        
+
     try:
         unit = request.POST['unit']
     except:
@@ -71,7 +72,7 @@ def add_quantity(request):
     # Now optionally set the remaining properties
 
     if 'uncertainty' in request.POST:
-        q.uncertainty = float(request.POST['uncertainty'])        
+        q.uncertainty = float(request.POST['uncertainty'])
 
     if 'origin' in request.POST:
         q.origin = request.POST['origin']
