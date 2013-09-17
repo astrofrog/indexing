@@ -36,14 +36,17 @@ class Quantity(models.Model):
     """
     A 'well defined quantity'
     """
-    quantity = models.ForeignKey(QuantityDefinition)
-    object = models.ForeignKey(Object)
+    # definition = models.ForeignKey(QuantityDefinition)
+    # object = models.ForeignKey(Object)
+    definition = models.CharField(max_length=100)
+    object = models.CharField(max_length=100)
     value = models.FloatField()
     uncertainty = models.FloatField(blank=True)
     unit = models.CharField(max_length=100, blank=True)
     origin = models.URLField(blank=True)
     date = models.DateTimeField(blank=True)
     date_entered = models.DateTimeField()
-    user = models.ForeignKey(User)
+    # user = models.ForeignKey(User)
+    user = models.CharField(max_length=100)
 
 
