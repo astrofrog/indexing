@@ -16,7 +16,7 @@ Reset database:
     
 Adminstrative interface:
 
-http://127.0.0.1:8000/admin
+[http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
 
 Example use of API to submit quantities:
 
